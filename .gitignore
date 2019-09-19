@@ -1,8 +1,5 @@
-*.iml
 .gradle
-local.properties
 .idea
-.idea/workspace.xml
 .idea/libraries
 .DS_Store
 .externalNativeBuild
@@ -55,3 +52,10 @@ xcuserdata
 *.ipa
 
 ios/Pods
+
+ios/RNTwilioVoice.xcodeproj/project.xcworkspace/xcshareddata/
+
+dist
+index.d.ts
+node_modules
+yarn.lock
