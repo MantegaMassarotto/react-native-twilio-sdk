@@ -96,15 +96,15 @@ public class CallNotificationManager {
             launchFlag = Intent.FLAG_ACTIVITY_NEW_TASK;
         }
 
-        launchIntent.setAction(ACTION_INCOMING_CALL)
-                .putExtra(INCOMING_CALL_NOTIFICATION_ID, notificationId)
-                .addFlags(
-                        launchFlag +
-                                WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED +
-                                WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD +
-                                WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON +
-                                WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
-                );
+//        launchIntent.setAction(ACTION_INCOMING_CALL)
+//                .putExtra(INCOMING_CALL_NOTIFICATION_ID, notificationId)
+//                .addFlags(
+//                        launchFlag +
+//                                WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED +
+//                                WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD +
+//                                WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON +
+//                                WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
+//                );
 
         if (callInvite != null) {
             launchIntent.putExtra(INCOMING_CALL_INVITE, callInvite);
