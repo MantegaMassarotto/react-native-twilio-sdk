@@ -15,9 +15,8 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.service.notification.StatusBarNotification;
-import android.support.v4.app.NotificationCompat;
+import androidx.core.app.NotificationCompat;
 import android.util.Log;
-import android.view.WindowManager;
 
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.twilio.voice.CallInvite;
@@ -96,15 +95,15 @@ public class CallNotificationManager {
             launchFlag = Intent.FLAG_ACTIVITY_NEW_TASK;
         }
 
-        launchIntent.setAction(ACTION_INCOMING_CALL)
-                .putExtra(INCOMING_CALL_NOTIFICATION_ID, notificationId)
-                .addFlags(
-                        launchFlag +
-                                WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED +
-                                WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD +
-                                WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON +
-                                WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
-                );
+//        launchIntent.setAction(ACTION_INCOMING_CALL)
+//                .putExtra(INCOMING_CALL_NOTIFICATION_ID, notificationId)
+//                .addFlags(
+//                        launchFlag +
+//                                WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED +
+//                                WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD +
+//                                WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON +
+//                                WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
+//                );
 
         if (callInvite != null) {
             launchIntent.putExtra(INCOMING_CALL_INVITE, callInvite);
@@ -312,23 +311,23 @@ public class CallNotificationManager {
         Log.d(TAG, "removeIncomingCallNotification");
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-            if (callInvite != null && callInvite.getState() == CallInvite.State.PENDING) {
-                /*
-                 * If the incoming call message was cancelled then remove the notification by matching
-                 * it with the call sid from the list of notifications in the notification drawer.
-                 */
-                StatusBarNotification[] activeNotifications = notificationManager.getActiveNotifications();
-                for (StatusBarNotification statusBarNotification : activeNotifications) {
-                    Notification notification = statusBarNotification.getNotification();
-                    String notificationType = notification.extras.getString(NOTIFICATION_TYPE);
-                    if (callInvite.getCallSid().equals(notification.extras.getString(CALL_SID_KEY)) &&
-                            notificationType != null && notificationType.equals(ACTION_INCOMING_CALL)) {
-                        notificationManager.cancel(notification.extras.getInt(INCOMING_CALL_NOTIFICATION_ID));
-                    }
-                }
-            } else if (notificationId != 0) {
-                notificationManager.cancel(notificationId);
-            }
+//            if (callInvite != null && callInvite.getState() == CallInvite.State.PENDING) {
+//                /*
+//                 * If the incoming call message was cancelled then remove the notification by matching
+//                 * it with the call sid from the list of notifications in the notification drawer.
+//                 */
+//                StatusBarNotification[] activeNotifications = notificationManager.getActiveNotifications();
+//                for (StatusBarNotification statusBarNotification : activeNotifications) {
+//                    Notification notification = statusBarNotification.getNotification();
+//                    String notificationType = notification.extras.getString(NOTIFICATION_TYPE);
+//                    if (callInvite.getCallSid().equals(notification.extras.getString(CALL_SID_KEY)) &&
+//                            notificationType != null && notificationType.equals(ACTION_INCOMING_CALL)) {
+//                        notificationManager.cancel(notification.extras.getInt(INCOMING_CALL_NOTIFICATION_ID));
+//                    }
+//                }
+//            } else if (notificationId != 0) {
+//                notificationManager.cancel(notificationId);
+//            }
         } else {
             if (notificationId != 0) {
                 notificationManager.cancel(notificationId);

@@ -4,10 +4,9 @@ import android.annotation.TargetApi;
 
 import android.app.ActivityManager;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.v4.content.LocalBroadcastManager;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import android.util.Log;
 
 import com.facebook.react.ReactApplication;
@@ -73,6 +72,7 @@ public class VoiceFirebaseMessagingService extends FirebaseMessagingService {
                     Handler handler = new Handler(Looper.getMainLooper());
                     handler.post(new Runnable() {
                         public void run() {
+
                             // Construct and load our normal React JS code bundle
                             ReactInstanceManager mReactInstanceManager = ((ReactApplication) getApplication()).getReactNativeHost().getReactInstanceManager();
                             ReactContext context = mReactInstanceManager.getCurrentReactContext();

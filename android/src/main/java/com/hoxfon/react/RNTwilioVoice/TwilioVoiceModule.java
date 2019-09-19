@@ -15,9 +15,8 @@ import android.media.AudioFocusRequest;
 import android.media.AudioManager;
 import android.os.Build;
 
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.content.LocalBroadcastManager;
+import androidx.core.content.ContextCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
@@ -373,7 +372,7 @@ public class TwilioVoiceModule extends ReactContextBaseJavaModule implements Act
     }
 
     // removed @Override temporarily just to get it working on different versions of RN
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Ignored, required to implement ActivityEventListener for RN 0.33
     }
 
@@ -393,12 +392,12 @@ public class TwilioVoiceModule extends ReactContextBaseJavaModule implements Act
                 }
                 SoundPoolManager.getInstance(getReactApplicationContext()).playRinging();
 
-                if (getReactApplicationContext().getCurrentActivity() != null) {
-                    Window window = getReactApplicationContext().getCurrentActivity().getWindow();
-                    window.addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
-                            | WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
-                    );
-                }
+//                if (getReactApplicationContext().getCurrentActivity() != null) {
+//                    Window window = getReactApplicationContext().getCurrentActivity().getWindow();
+//                    window.addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
+//                            | WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
+//                    );
+//                }
                 // send a JS event ONLY if the app's importance is FOREGROUND or SERVICE
                 // at startup the app would try to fetch the activeIncoming calls
                 int appImportance = callNotificationManager.getApplicationImportance(getReactApplicationContext());
