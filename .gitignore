@@ -55,6 +55,7 @@ ios/Pods
 
 ios/RNTwilioVoice.xcodeproj/project.xcworkspace/xcshareddata/
 
-# index.d.ts
+dist
+index.d.ts
 node_modules
 yarn.lock
